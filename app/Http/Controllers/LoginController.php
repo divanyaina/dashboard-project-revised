@@ -18,13 +18,18 @@ class LoginController extends Controller
             'password' => $request->password
         ];
 
-        if(Auth::attempt($data)){
-            return redirect()->route('home');
-        }
-        else{
-            return redirect()->route('login')->with('failed','Email or password you entered is wrong');
-        };
+        if (Auth::attempt($data)) {
+            $user = Auth::user();
 
+            if ($user->level == 'pemilik') {
+                return redirect()->route('home-pemilik');
+            }
+            else {
+                return redirect()->route('home');
+            }
+        } else {
+            return redirect()->route('login')->with('failed', 'Email atau password yang Anda masukkan salah');
+        };
     }
 
     public function logout(){

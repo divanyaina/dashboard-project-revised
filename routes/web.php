@@ -12,10 +12,6 @@ Route::post('/loginprocess',[LoginController::class, 'loginprocess'])->name('log
 Route::get('/logout',[LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function(){
-    // Route::get('/home', function () {
-    //     return view('home');
-    // })->name('home');
-
     Route::get('/home',[MetabaseController::class, 'home']) ->name('home');
 });
 
@@ -41,7 +37,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/bawean',[MetabaseController::class, 'dashboard_vpp_bawean']);
 
-})->middleware('role:admin, peneliti');
+})->middleware('level:admin, pengelola');
 
 Route::middleware('auth')->group(function(){
 
@@ -49,7 +45,19 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/bawean',[MetabaseController::class, 'dashboard_vpp_bawean']);
 
-})->middleware('role:admin, eksekutif');
+})->middleware('level:admin, eksekutif');
+
+Route::middleware('auth')->group(function(){
+
+    Route::get('/home-pemilik',[MetabaseController::class, 'dashboard_home_pemilik']) ->name('home-pemilik');
+
+    Route::get('/der1-its',[MetabaseController::class, 'dashboard_der1_its']);
+
+    Route::get('/der2-its',[MetabaseController::class, 'dashboard_der2_its']);
+
+    Route::get('/der3-its',[MetabaseController::class, 'dashboard_der3_its']);
+
+})->middleware('level:admin, pemilik');
 
 
 

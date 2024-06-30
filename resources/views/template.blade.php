@@ -111,16 +111,18 @@
             <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
                 <ul class="space-y-1.5">
                     <!-- Home -->
-                    <li>
-                        <a class="flex items-center gap-x-3.5 py-2 px-2.5  font-medium text-sm text-neutral-900 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-white"
-                            href="home">
-                            <img width="21" height="21" src={{ asset('img/home.png') }} alt="Icon Home">
-                            Home
-                        </a>
-                    </li>
+                    @if (auth()->user()->level == 'admin' || auth()->user()->level == 'pengelola' || auth()->user()->level == 'eksekutif')
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5  font-medium text-sm text-neutral-900 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-white"
+                                href="home">
+                                <img width="21" height="21" src={{ asset('img/home.png') }} alt="Icon Home">
+                                Home
+                            </a>
+                        </li>
+                    @endif
 
                     <!-- ITS Dropdown -->
-                    @if (auth()->user()->level == 'admin' || auth()->user()->level == 'peneliti')
+                    @if (auth()->user()->level == 'admin' || auth()->user()->level == 'pengelola')
                         <li class="hs-accordion" id="account-accordion">
                             <button type="button"
                                 class="hs-accordion-toggle w-full text-start flex font-medium  items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-neutral-900 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
@@ -235,6 +237,39 @@
                                 href="bawean">
                                 <img width="24" height="24" src={{ asset('img/gps.png') }} alt="Icon Bawean">
                                 VPP Bawean
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (auth()->user()->level == 'pemilik' || auth()->user()->level == 'admin')
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5  font-medium text-sm text-neutral-900 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-white"
+                                href="home-pemilik">
+                                <img width="21" height="21" src={{ asset('img/home.png') }} alt="Icon Home">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5  font-medium text-sm text-neutral-900 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-white"
+                                href="der1-its">
+                                <img width="24" height="24" src={{ asset('img/der1.png') }} alt="DER 1 ITS">
+                                DER 1 ITS
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5  font-medium text-sm text-neutral-900 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-white"
+                                href="der2-its">
+                                <img width="24" height="24" src={{ asset('img/der2.png') }} alt="DER 2 ITS">
+                                DER 2 ITS
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5  font-medium text-sm text-neutral-900 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-white"
+                                href="der3-its">
+                                <img width="22" height="22" src={{ asset('img/batt.png') }} alt="DER 3 ITS">
+                                DER 3 ITS
                             </a>
                         </li>
                     @endif

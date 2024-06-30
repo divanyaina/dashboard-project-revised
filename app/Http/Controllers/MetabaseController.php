@@ -11,7 +11,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 52],
+            'resource' => ['dashboard' => 54],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -29,7 +29,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 18],
+            'resource' => ['dashboard' => 62],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -47,7 +47,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 15],
+            'resource' => ['dashboard' => 65],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -65,7 +65,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 16],
+            'resource' => ['dashboard' => 63],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -83,7 +83,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 17],
+            'resource' => ['dashboard' => 64],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -101,7 +101,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 9],
+            'resource' => ['dashboard' => 56],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -119,7 +119,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 19],
+            'resource' => ['dashboard' => 59],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -137,7 +137,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 20],
+            'resource' => ['dashboard' => 58],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -155,7 +155,7 @@ class MetabaseController extends Controller
         $metabaseSiteUrl = env('api.Metabase');
         $metabaseSecretKey = env('api.Key.Metabase');
         $payload = [
-            'resource' => ['dashboard' => 51],
+            'resource' => ['dashboard' => 57],
             'params' => (object)[],
             'exp' => time() + (10 * 60)
         ];
@@ -166,6 +166,24 @@ class MetabaseController extends Controller
         ];
 
         return view('der3-its', $data);
+
+    }
+
+    public function dashboard_home_pemilik(){
+        $metabaseSiteUrl = env('api.Metabase');
+        $metabaseSecretKey = env('api.Key.Metabase');
+        $payload = [
+            'resource' => ['dashboard' => 61],
+            'params' => (object)[],
+            'exp' => time() + (10 * 60)
+        ];
+        $token = JWT::encode($payload, $metabaseSecretKey, 'HS256');
+        $iframeUrl = "$metabaseSiteUrl/embed/dashboard/$token#theme=transparent&bordered=false&titled=false";
+        $data = [
+            'url' => $iframeUrl
+        ];
+
+        return view('home-pemilik', $data);
 
     }
 
